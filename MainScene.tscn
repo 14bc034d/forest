@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/textures/player4.png" type="Texture" id=1]
+[ext_resource path="res://assets/script/move.gd" type="Script" id=2]
+[ext_resource path="res://assets/textures/floor.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/tree1.png" type="Texture" id=4]
+[ext_resource path="res://assets/textures/player1.png" type="Texture" id=5]
+[ext_resource path="res://assets/textures/player2.png" type="Texture" id=6]
+[ext_resource path="res://assets/textures/player3.png" type="Texture" id=7]
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "walk",
+"speed": 4.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=1]
+custom_solver_bias = 1.0
+extents = Vector2( 27.4792, 45.0035 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="floor" type="Sprite" parent="."]
+position = Vector2( 549.263, 297.02 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( -1024, -896, 2112, 1856 )
+
+[node name="player" type="KinematicBody2D" parent="."]
+position = Vector2( 500, 300 )
+script = ExtResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+position = Vector2( -500, -300 )
+offset = Vector2( 500, 300 )
+current = true
+
+[node name="Sprite" type="AnimatedSprite" parent="player"]
+position = Vector2( 10.7465, -7.64395 )
+scale = Vector2( 4.14831, 4.39411 )
+frames = SubResource( 4 )
+animation = "walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+position = Vector2( -0.401489, 4.17169 )
+shape = SubResource( 1 )
+
+[node name="tree1" type="StaticBody2D" parent="."]
+light_mask = -2147483647
+
+[node name="tree1" type="Sprite" parent="tree1"]
+position = Vector2( 178.518, 202.742 )
+scale = Vector2( 9, 9 )
+texture = ExtResource( 4 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="tree1"]
+polygon = PoolVector2Array( 96, 384, 96, 376, 112, 376, 120, 368, 128, 360, 136, 352, 136, 248, 136, 224, 248, 224, 248, 344, 248, 352, 256, 352, 256, 360, 264, 360, 272, 368, 280, 368, 288, 376, 312, 376, 312, 384 )
