@@ -1,33 +1,26 @@
 extends KinematicBody2D
 
-var speed = 10
+export (int) var speed = 300
 
-var wasd_list = {"right":""}
+var velocity = Vector2()
 
-func run_script(input):
-	var script = GDScript.new()
-	script.set_source_code("func eval():" + input)
-	script.reload()
-
-	#var obj = Reference.new()
-	var obj = Node.new() #So we can call get_node
-	obj.set_script(script)
-	add_child(obj)
-	var ret_val = obj.eval()
-	remove_child(obj)
-
-
-func go(wasd, anim):
-	if Input.is_action_pressed(wasd):
-		
-		$Sprite.play(anim)
-	else: $Sprite.play("default")
-
-func control():
-	go("right", "walk")
-	go("left", "walk")
-	go("up", "walk")
-	go("down", "walk")
+func get_input():
+	velocity = Vector2()
+	if Input.is_action_pressed('right'):
+		velocity.x += 1
+		#$Sprite.animation("walk")
+	if Input.is_action_pressed('left'):
+		velocity.x -= 1
+		#$Sprite.animation("walk")
+	if Input.is_action_pressed('down'):
+		velocity.y += 1
+		#$Sprite.animation("walk")
+	if Input.is_action_pressed('up'):
+		velocity.y -= 1
+		#$Sprite.animation("walk")
+	velocity = velocity.normalized() * speed
+	#$Sprite.animation("default")
 
 func _physics_process(delta):
-	control()
+	get_input()
+	velocity = move_and_slide(velocity)

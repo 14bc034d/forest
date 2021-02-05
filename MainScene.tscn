@@ -8,7 +8,7 @@
 [ext_resource path="res://assets/textures/player2.png" type="Texture" id=6]
 [ext_resource path="res://assets/textures/player3.png" type="Texture" id=7]
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
@@ -21,7 +21,7 @@ animations = [ {
 "speed": 4.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 custom_solver_bias = 1.0
 extents = Vector2( 27.4792, 45.0035 )
 
@@ -33,6 +33,17 @@ scale = Vector2( 3, 3 )
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( -1024, -896, 2112, 1856 )
+
+[node name="tree1" type="StaticBody2D" parent="."]
+light_mask = -2147483647
+
+[node name="tree1" type="Sprite" parent="tree1"]
+position = Vector2( 178.518, 202.742 )
+scale = Vector2( 9, 9 )
+texture = ExtResource( 4 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="tree1"]
+polygon = PoolVector2Array( 96, 384, 96, 376, 112, 376, 120, 368, 128, 360, 136, 352, 136, 176, 96, 152, 96, 184, 88, 184, 88, 152, 72, 152, 72, 184, 64, 184, 64, 152, 64, 128, 56, 128, 56, 168, 40, 168, 40, 128, 32, 128, 32, 152, 24, 144, 24, 112, 16, 112, 16, 64, 32, 64, 40, 56, 48, 48, 88, 48, 96, 32, 104, 32, 104, 24, 144, 24, 248, 24, 248, 40, 288, 40, 288, 48, 304, 48, 304, 56, 320, 56, 320, 72, 328, 72, 328, 80, 320, 80, 320, 88, 320, 88, 320, 80, 328, 80, 336, 88, 344, 88, 344, 184, 328, 184, 328, 120, 320, 120, 320, 128, 312, 128, 312, 192, 304, 192, 304, 144, 296, 152, 296, 192, 288, 192, 288, 168, 280, 168, 280, 184, 264, 184, 264, 168, 256, 168, 256, 192, 248, 192, 248, 344, 288, 376, 312, 376, 312, 384 )
 
 [node name="player" type="KinematicBody2D" parent="."]
 position = Vector2( 500, 300 )
@@ -46,20 +57,9 @@ current = true
 [node name="Sprite" type="AnimatedSprite" parent="player"]
 position = Vector2( 10.7465, -7.64395 )
 scale = Vector2( 4.14831, 4.39411 )
-frames = SubResource( 4 )
+frames = SubResource( 1 )
 animation = "walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
 position = Vector2( -0.401489, 4.17169 )
-shape = SubResource( 1 )
-
-[node name="tree1" type="StaticBody2D" parent="."]
-light_mask = -2147483647
-
-[node name="tree1" type="Sprite" parent="tree1"]
-position = Vector2( 178.518, 202.742 )
-scale = Vector2( 9, 9 )
-texture = ExtResource( 4 )
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="tree1"]
-polygon = PoolVector2Array( 96, 384, 96, 376, 112, 376, 120, 368, 128, 360, 136, 352, 136, 248, 136, 224, 248, 224, 248, 344, 248, 352, 256, 352, 256, 360, 264, 360, 272, 368, 280, 368, 288, 376, 312, 376, 312, 384 )
+shape = SubResource( 2 )
