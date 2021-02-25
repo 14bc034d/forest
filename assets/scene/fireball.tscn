@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/textures/fireball.png" type="Texture" id=1]
+[ext_resource path="res://assets/script/fireball.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 4.43333
+height = 2.5499
+
+[node name="fireball" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = -2147483646
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
