@@ -64,7 +64,7 @@ current = true
 script = ExtResource( 9 )
 
 [node name="Particles2D" type="Particles2D" parent="player/Camera2D"]
-position = Vector2( 524.851, -55.4356 )
+position = Vector2( 512.252, -13.8582 )
 amount = 100
 lifetime = 1.13
 randomness = 0.32

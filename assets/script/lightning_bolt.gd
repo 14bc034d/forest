@@ -1,14 +1,5 @@
 extends KinematicBody2D
 
-func wait(sec):
-	var t = Timer.new()
-	t.set_wait_time(sec)
-	t.set_one_shot(true)
-	self.add_child(t)
-	t.start()
-	yield(t, "timeout")
-	
-
 func _physics_process(delta):
 	rotation += get_local_mouse_position().angle()
 	var t = Timer.new()
@@ -17,4 +8,4 @@ func _physics_process(delta):
 	self.add_child(t)
 	t.start()
 	yield(t, "timeout")
-	self.get_parent().remove_child(self)
+	if(!Input.is_action_pressed('mouse_left')): self.get_parent().remove_child(self)
