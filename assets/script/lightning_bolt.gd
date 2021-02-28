@@ -1,5 +1,8 @@
 extends KinematicBody2D
 
+func _ready():
+	$AnimatedSprite.play("default")
+
 func _physics_process(delta):
 	rotation += get_local_mouse_position().angle()
 	var t = Timer.new()
